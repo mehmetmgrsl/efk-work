@@ -1,0 +1,10 @@
+/node-app/.DS_Store
+node-app/.idea/*
+node-app/node_modules/*
+
+java-app-efk/.DS_Store
+java-app-efk/.idea/*
+java-app-efk/.gradle
+java-app-efk/bin/*
+java-app-efk/build
+java-app-efk/out
