@@ -1,3 +1,5 @@
+# WIP
+
 ## Why EFK (Elasticsearch, Fluentd, Kibana) Stack?
 
 - To allow users to easily and efficiently manage (collect, store and analyze) log data.
