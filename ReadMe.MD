@@ -21,7 +21,7 @@
 - kind create cluster --name efk-cluster --config kind-config.yaml
 
 ### Create a secret to access docker registry
-
+Deploy the java application
 1. Set the following env variables:
   - DOCKER_REGISTRY_SERVER=docker.io
   - DOCKER_USER=<DOCKER_ID>
@@ -51,6 +51,21 @@ java-app-558bb79ff6-54rcm   1/1     Running   0          52s
 - Check the logs
 
    ```kubectl logs java-app-558bb79ff6-54rcm```
+
+## Deploy the nodejs application
+
+```kubectl apply -f node-app/deployment.yaml```   
+
+```
+kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+java-app-558bb79ff6-54rcm   1/1     Running   0          7m52s
+node-app-66c684f4b5-9pssm   1/1     Running   0          60s
+```
+
+- Check the logs
+
+   ```kubectl logs node-app-66c684f4b5-9pssm```
 
 ### Resource
 1. [EFK - Nana Janashia](https://gitlab.com/nanuchi/efk-course-commands)
