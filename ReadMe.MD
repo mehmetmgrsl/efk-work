@@ -20,6 +20,23 @@
 
 - kind create cluster --name efk-cluster --config kind-config.yaml
 
+## Create a secret to access docker registry
+
+1. Set the following env variables:
+  - DOCKER_REGISTRY_SERVER=docker.io
+  - DOCKER_USER=<DOCKER_ID>
+  - DOCKER_EMAIL=<yor_email>
+  - DOCKER_PASSWORD=<your_psw>
+
+2. Create the secret
+
+```
+kubectl create secret docker-registry myregistrysecret \
+--docker-server=$DOCKER_REGISTRY_SERVER \
+--docker-username=$DOCKER_USER \
+--docker-password=$DOCKER_PASSWORD \
+--docker-email=$DOCKER_EMAIL 
+```
 
 ### Resource
 1. [EFK - Nana Janashia](https://gitlab.com/nanuchi/efk-course-commands)
