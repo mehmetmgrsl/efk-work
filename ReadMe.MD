@@ -67,6 +67,18 @@ node-app-66c684f4b5-9pssm   1/1     Running   0          60s
 
    ```kubectl logs node-app-66c684f4b5-9pssm```
 
+## Install Elastic Stack (EFK - Elastic, FluentD, Kibana)
+
+1. Install elastic search helm chart
+
+```
+helm repo add elastic https://Helm.elastic.co
+helm install elasticsearch elastic/elasticsearch
+```
+
+  
+
 ### Resource
 1. [EFK - Nana Janashia](https://gitlab.com/nanuchi/efk-course-commands)
 2. [Logging in Kubernetes with Elasticsearch, Fluentd and Kibana | Complete Course Overview - TechWorld with Nana](https://www.youtube.com/watch?v=I5c8Pfg2tys)
+3. https://gitlab.com/nanuchi/efk-course-commands/-/blob/master/commands.md?ref_type=heads
