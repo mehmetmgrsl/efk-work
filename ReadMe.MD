@@ -16,9 +16,10 @@
 
 - Node App -> [node-app/ReadMe.MD](node-app/ReadMe.MD)
 
-### Create a K8S cluster (1 master 2 worker nodes)
+### Create a K8S cluster
 
-- kind create cluster --name efk-cluster --config kind-config.yaml
+- minikube start --cpus 4 --memory 8192
+
 
 ### Create a secret to access docker registry
 Deploy the java application
