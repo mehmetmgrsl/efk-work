@@ -77,6 +77,15 @@ helm repo add elastic https://Helm.elastic.co
 helm install elasticsearch elastic/elasticsearch -f elastic-custom-values.yaml
 ```
 
+```
+kubectl get all | grep elastic
+pod/elasticsearch-master-0      1/1     Running   0          20m
+pod/elasticsearch-master-1      1/1     Running   0          20m
+pod/elasticsearch-master-2      1/1     Running   0          20m
+service/elasticsearch-master            ClusterIP   10.104.82.89   <none>        9200/TCP,9300/TCP   20m
+service/elasticsearch-master-headless   ClusterIP   None           <none>        9200/TCP,9300/TCP   20m
+statefulset.apps/elasticsearch-master   3/3     20m
+```
   
 
 ### Resource
