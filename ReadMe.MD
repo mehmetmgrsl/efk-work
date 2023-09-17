@@ -74,7 +74,7 @@ node-app-66c684f4b5-9pssm   1/1     Running   0          60s
 
 ```
 helm repo add elastic https://Helm.elastic.co
-helm install elasticsearch elastic/elasticsearch
+helm install elasticsearch elastic/elasticsearch -f elastic-custom-values.yaml
 ```
 
   
