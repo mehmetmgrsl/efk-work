@@ -129,6 +129,28 @@ node-app-599d64967c-dp69z                                1/1     Running   1 (16
     Open a browser and access it via -> http://localhost:5601
 
 
+4. Install Fluentd
+
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install fluentd bitnami/fluentd
+```
+
+```
+kubectl get pods
+NAME                                                     READY   STATUS    RESTARTS      AGE
+elasticsearch-master-0                                   1/1     Running   1 (8h ago)    12h
+elasticsearch-master-1                                   1/1     Running   1 (8h ago)    12h
+elasticsearch-master-2                                   1/1     Running   1 (8h ago)    12h
+fluentd-0                                                1/1     Running   0             2m54s
+fluentd-nvp85                                            1/1     Running   4 (57s ago)   2m54s
+java-app-65b6dc8dd-mx4q2                                 1/1     Running   1 (8h ago)    12h
+kibana-kibana-769dfd4cdf-bp4zr                           1/1     Running   1 (24m ago)   53m
+nginx-ingress-ingress-nginx-controller-759897f58-lxwf7   1/1     Running   0             42m
+node-app-599d64967c-dp69z                                1/1     Running   1 (58m ago)   12h
+```
+
+
 ### Resources
 1. [EFK - Nana Janashia](https://gitlab.com/nanuchi/efk-course-commands)
 2. [Logging in Kubernetes with Elasticsearch, Fluentd and Kibana | Complete Course Overview - TechWorld with Nana](https://www.youtube.com/watch?v=I5c8Pfg2tys)
