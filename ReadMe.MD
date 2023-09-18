@@ -87,7 +87,7 @@ service/elasticsearch-master-headless   ClusterIP   None           <none>       
 statefulset.apps/elasticsearch-master   3/3     20m
 ```
   
-2. Install kibana search helm chart  
+2. Install kibana helm chart  
 
 ```helm install kibana elastic/kibana```
 
@@ -102,7 +102,28 @@ kibana-kibana-769dfd4cdf-bp4zr   1/1     Running   0               64s
 node-app-599d64967c-dp69z        1/1     Running   1 (5m13s ago)   11h
 ```
 
-### Resource
+3. Install NGINX Ingress Controller
+
+```
+helm repo add stable https://charts.helm.sh/stable 
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm install nginx-ingress ingress-nginx/ingress-nginx
+```
+
+```
+kubectl get pods
+NAME                                                     READY   STATUS    RESTARTS        AGE
+elasticsearch-master-0                                   1/1     Running   1 (7h56m ago)   11h
+elasticsearch-master-1                                   1/1     Running   1 (7h55m ago)   11h
+elasticsearch-master-2                                   1/1     Running   1 (7h56m ago)   11h
+java-app-65b6dc8dd-mx4q2                                 1/1     Running   1 (7h56m ago)   11h
+kibana-kibana-769dfd4cdf-bp4zr                           1/1     Running   0               12m
+nginx-ingress-ingress-nginx-controller-759897f58-lxwf7   1/1     Running   0               91s
+node-app-599d64967c-dp69z                                1/1     Running   1 (16m ago)     11h
+```
+
+
+### Resources
 1. [EFK - Nana Janashia](https://gitlab.com/nanuchi/efk-course-commands)
 2. [Logging in Kubernetes with Elasticsearch, Fluentd and Kibana | Complete Course Overview - TechWorld with Nana](https://www.youtube.com/watch?v=I5c8Pfg2tys)
 3. https://gitlab.com/nanuchi/efk-course-commands/-/blob/master/commands.md?ref_type=heads
