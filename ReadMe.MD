@@ -122,6 +122,12 @@ nginx-ingress-ingress-nginx-controller-759897f58-lxwf7   1/1     Running   0    
 node-app-599d64967c-dp69z                                1/1     Running   1 (16m ago)     11h
 ```
 
+- Access Kibana locally
+
+   ```kubectl port-forward deployment/kibana-kibana 5601```
+
+    Open a browser and access it via -> http://localhost:5601
+
 
 ### Resources
 1. [EFK - Nana Janashia](https://gitlab.com/nanuchi/efk-course-commands)
