@@ -73,7 +73,7 @@ node-app-66c684f4b5-9pssm   1/1     Running   0          60s
 1. Install elastic search helm chart
 
 ```
-helm repo add elastic https://Helm.elastic.co
+helm repo add elastic https://helm.elastic.co
 helm install elasticsearch elastic/elasticsearch -f elastic-custom-values.yaml
 ```
 
@@ -87,6 +87,20 @@ service/elasticsearch-master-headless   ClusterIP   None           <none>       
 statefulset.apps/elasticsearch-master   3/3     20m
 ```
   
+2. Install kibana search helm chart  
+
+```helm install kibana elastic/kibana```
+
+```
+kubectl get pods
+NAME                             READY   STATUS    RESTARTS        AGE
+elasticsearch-master-0           1/1     Running   1 (7h44m ago)   11h
+elasticsearch-master-1           1/1     Running   1 (7h44m ago)   11h
+elasticsearch-master-2           1/1     Running   1 (7h44m ago)   11h
+java-app-65b6dc8dd-mx4q2         1/1     Running   1 (7h44m ago)   11h
+kibana-kibana-769dfd4cdf-bp4zr   1/1     Running   0               64s
+node-app-599d64967c-dp69z        1/1     Running   1 (5m13s ago)   11h
+```
 
 ### Resource
 1. [EFK - Nana Janashia](https://gitlab.com/nanuchi/efk-course-commands)
