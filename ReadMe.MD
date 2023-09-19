@@ -150,6 +150,91 @@ nginx-ingress-ingress-nginx-controller-759897f58-lxwf7   1/1     Running   0    
 node-app-599d64967c-dp69z                                1/1     Running   1 (58m ago)   12h
 ```
 
+5. Update the configmap of Fluentd
+
+```kubectl edit cm fluentd-forwarder-cm```
+
+5.1. Change ```@type stdout```  to  ```@type null``` like below to not see the healthcheck logs:
+
+from: 
+```
+  fluentd-output.conf: |
+    # Throw the healthcheck to the standard output instead of forwarding it
+    <match fluentd.healthcheck>
+      @type stdout
+    </match>
+```
+to:
+
+```
+  fluentd-output.conf: |
+    # Throw the healthcheck to the standard output instead of forwarding it
+    <match fluentd.healthcheck>
+      @type null
+    </match>
+```
+
+5.2. Change ```path /var/log/containers/*.log```  to ```path /var/log/containers/*-app*.log``` to exclude all logs except our apps' logs (java-app-efk and node-app)
+
+from: 
+
+```
+    <source>
+      @type tail
+      path /var/log/containers/*.log
+```
+
+to:
+
+```
+    <source>
+      @type tail
+      path /var/log/containers/*-app*.log      
+```
+
+and delete the following lines. Because we already excluded fluentd logs with the change above:
+
+```
+      # exclude Fluentd logs
+      exclude_path /var/log/containers/*fluentd*.log
+```
+5.3. Instead of forwarding logs to aggregator, we can send it to the console to see the logs, change the following lines:
+
+from: 
+
+```
+    # Forward all logs to the aggregators
+    <match **>
+      @type forward
+      <server>
+        host fluentd-0.fluentd-headless.default.svc.cluster.local
+        port 24224
+      </server>
+      <buffer>
+        @type file
+        path /opt/bitnami/fluentd/logs/buffers/logs.buffer
+        flush_thread_count 2
+        flush_interval 5s
+      </buffer>
+    </match>
+```
+to:
+
+```
+    # Print all logs on the console
+    <match **>
+      @type stdout
+    </match>
+```
+
+5.4. Restart the daemonset to use the updated config map.
+```kubectl rollout restart daemonset/fluentd```
+
+5.5. Check the log of fluentd, to see only java and node apps' logs:
+
+```kubectl logs <name-of-the-fluentd-pod>```
+
+
 
 ### Resources
 1. [EFK - Nana Janashia](https://gitlab.com/nanuchi/efk-course-commands)
