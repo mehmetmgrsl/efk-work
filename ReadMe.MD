@@ -67,30 +67,9 @@ node-app-66c684f4b5-9pssm   1/1     Running   0          60s
 
 ### Install Elastic Stack (EFK - Elastic, FluentBit, Kibana) (4*)
 
-Apply the following commands:
+Apply the following command:
 
-- ```kubectl apply -f 01-namespace.yaml```
-
-- ```kubectl apply -f 02-secret.yaml```
-
-- ```kubectl apply -f 03-es-svs.yaml```
-
-- ```kubectl apply -f 04-es-sts.yaml```
-
-- ```kubectl apply -f 05-kibana-svc.yaml```
-
-- ```kubectl apply -f 06-kibana-deploy.yaml```
-
-- ```kubectl apply -f 07-fluentbit-sa.yaml```
-
-- ```kubectl apply -f 08-fluentbit-role.yaml```
-
-- ```kubectl apply -f 09-fluentbit-rb.yaml```
-
-- ```kubectl apply -f 10-fluentbit-cm.yaml```
-
-- ```kubectl apply -f 11-fluentbit-ds.yaml```
-
+- ```kubectl apply -f efk-installation```
 
 1. Make sure Elasticsearch cluster is working:
 
